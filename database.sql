@@ -59,3 +59,4 @@ CREATE TABLE "profile_types" (
 	"profile_id" int references "profile",
 	"type_id" int references "musician_types"
 );
+
