@@ -80,4 +80,31 @@ router.post('/', rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.put('/edit', (req, res) => {
+  const queryText = `UPDATE "profile" SET "bio"=$1, "display_name"=$2, "profile_pic"=$3
+    WHERE "user_id"=$4
+    RETURNING "id";`;
+
+  pool
+    .query(queryText, [
+      req.body.bio,
+      req.body.display_name,
+      req.body.profile_pic,
+      req.user.id,
+    ])
+    .then((dbResponse) => {
+      const queryText2 = `UPDATE "profile_types" SET "type_id"=$1 WHERE "profile_id"=$2;`;
+
+      pool
+        .query(queryText2, [req.body.type_id, dbResponse.rows[0].id])
+        .then((dbResponse) => {
+          res.sendStatus(200);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.sendStatus(500);
+        });
+    });
+});
+
 module.exports = router;
