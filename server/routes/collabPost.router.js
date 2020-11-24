@@ -52,10 +52,10 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
-  const queryText = `DELETE FROM "collab_post" WHERE "id"=$1;`;
+  const queryText = `DELETE FROM "collab_post" WHERE "id"=$1 AND "user_id"=$2;`;
 
   pool
-    .query(queryText, [req.params.id])
+    .query(queryText, [req.params.id, req.user.id])
     .then((dbResponse) => {
       res.sendStatus(200);
     })
