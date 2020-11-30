@@ -68,7 +68,7 @@ class EditProfile extends Component {
               variant="outlined"
               label="Display Name"
               className="size"
-              onChange={this.handleChangeFor}
+              onChange={this.handleChangeFor('display_name')}
             />
             <br />
             <br />
@@ -103,7 +103,7 @@ class EditProfile extends Component {
                   placeholder="Bio (350 characters)"
                   multiline
                   className="size-bio"
-                  onChange={this.handleChangeFor}
+                  onChange={this.handleChangeFor('bio')}
                 />
               </div>
             </div>

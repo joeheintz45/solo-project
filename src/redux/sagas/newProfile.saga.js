@@ -29,7 +29,7 @@ function* postProfile(action) {
 function* putProfile(action) {
   try {
     yield put({ type: 'ERROR_RESET' });
-    yield axios.post('/api/profile/edit', action.payload);
+    yield axios.put('/api/profile/edit', action.payload);
     yield put({
       type: 'GET_PROFILE_INFO',
     });
