@@ -1,6 +1,10 @@
 import { all } from 'redux-saga/effects';
+import postSaga from './collabPost.saga';
+import filteredSaga from './filteredPosts.saga';
 import loginSaga from './login.saga';
+import newProfileSaga from './newProfile.saga';
 import registrationSaga from './registration.saga';
+import typeSaga from './type.saga';
 import userSaga from './user.saga';
 
 // rootSaga is the primary saga.
@@ -15,5 +19,9 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
+    typeSaga(),
+    newProfileSaga(),
+    postSaga(),
+    filteredSaga(),
   ]);
 }

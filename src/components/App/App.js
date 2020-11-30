@@ -21,6 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import ProfileInit from '../ProfileInit/ProfileInit';
+import Home from '../Home/Home';
+import Profile from '../Profile/Profile';
 
 class App extends Component {
   componentDidMount() {
@@ -89,10 +92,17 @@ class App extends Component {
               // - else shows LandingPage at "/home"
               exact
               path="/home"
-              component={LandingPage}
-              authRedirect="/user"
+              component={Home}
             />
-
+            <ProtectedRoute
+              // with authRedirect:
+              // - if logged in, redirects to "/user"
+              // - else shows LandingPage at "/home"
+              exact
+              path="/init"
+              component={ProfileInit}
+            />
+            <ProtectedRoute exact path="/profile" component={Profile} />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

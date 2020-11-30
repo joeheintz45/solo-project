@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Avatar } from '@material-ui/core';
 
 const Nav = (props) => {
   let loginLinkData = {
@@ -19,10 +20,10 @@ const Nav = (props) => {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        <h2 className="nav-title">Make Music Together</h2>
       </Link>
       <div className="nav-right">
-        <Link className="nav-link" to={loginLinkData.path}>
+        <Link className="nav-link" to="/home">
           {/* Show this link if they are logged in or not,
           but call this link 'Home' if they are logged in,
           and call this link 'Login / Register' if they are not */}
@@ -31,16 +32,24 @@ const Nav = (props) => {
         {/* Show the link to the info page and the logout button if the user is logged in */}
         {props.store.user.id && (
           <>
-            <Link className="nav-link" to="/info">
-              Info Page
+            <Link className="nav-link" to="/messages">
+              Messages
             </Link>
-            <LogOutButton className="nav-link" />
           </>
         )}
         {/* Always show this link since the about page is not protected */}
-        <Link className="nav-link" to="/about">
-          About
+        <Link className="nav-link" to="/profile">
+          Profile
+          {/* <Avatar
+            style={{ height: '20px', width: '20px' }}
+            className="profile"
+            src="/broken-image.jpg"
+          /> */}
         </Link>
+        <Link className="nav-link" to="/new-post">
+          New Post
+        </Link>
+        <LogOutButton className="nav-link" />
       </div>
     </div>
   );

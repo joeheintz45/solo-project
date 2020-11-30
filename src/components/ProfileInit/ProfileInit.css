@@ -1,0 +1,25 @@
+.profile-edit {
+  margin: 10px 400px;
+  padding: 10px;
+  padding-left: 100px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.size {
+  width: 125px;
+}
+
+.image {
+  /* float: right; */
+  height: 200px;
+  padding-right: 50px;
+}
+
+.button {
+  text-align: center;
+}
+
+.size-bio {
+  width: 420px;
+}

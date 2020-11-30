@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { withRouter } from 'react-router-dom';
 
 class RegisterForm extends Component {
   state = {
@@ -10,6 +11,8 @@ class RegisterForm extends Component {
 
   registerUser = (event) => {
     event.preventDefault();
+
+    this.props.history.push('/init');
 
     this.props.dispatch({
       type: 'REGISTER',
@@ -67,4 +70,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RegisterForm);
+export default withRouter(connect(mapStoreToProps)(RegisterForm));

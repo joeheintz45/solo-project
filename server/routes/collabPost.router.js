@@ -8,13 +8,37 @@ const {
 /**
  * GET route template
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/:id', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `SELECT "collab_post".id, "collab_post".likes, "collab_post".content, "collab_post".published, 
-    "collab_post".location_id, "profile".id, "profile".display_name, "profile".profile_pic
+    "collab_post".location_id, "profile".id, "profile".display_name, "profile".profile_pic, "musician_types".type
     FROM "collab_post"
     JOIN "user" ON "user".id = "collab_post".user_id
     JOIN "profile" ON "profile".user_id = "user".id
+    JOIN "musician_types" ON "musician_types".id = "collab_post".type_id
+    WHERE "collab_post".type_id = $1
+    ORDER BY "collab_post".published ASC;`;
+
+  pool
+    .query(queryText, [req.params.id])
+    .then((dbResponse) => {
+      console.log('collab_post GET:', dbResponse.rows);
+      res.send(dbResponse.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+router.get('/', rejectUnauthenticated, (req, res) => {
+  // GET route code here
+  const queryText = `SELECT "collab_post".id, "collab_post".likes, "collab_post".content, "collab_post".published, 
+    "collab_post".location_id, "profile".id, "profile".display_name, "profile".profile_pic, "musician_types".type
+    FROM "collab_post"
+    JOIN "user" ON "user".id = "collab_post".user_id
+    JOIN "profile" ON "profile".user_id = "user".id
+    JOIN "musician_types" ON "musician_types".id = "collab_post".type_id
     ORDER BY "collab_post".published ASC;`;
 
   pool
@@ -35,9 +59,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   console.log('req.user:', req.user);
-  const queryText = `INSERT INTO "collab_post" ("content", "user_id", "likes")
-  VALUES ($1, $2, 0);`;
-  const queryArray = [req.body.content, req.user.id];
+  const queryText = `INSERT INTO "collab_post" ("content", "user_id", "likes", "type_id")
+  VALUES ($1, $2, 0, $3);`;
+  const queryArray = [req.body.content, req.user.id, req.body.type_id];
 
   pool
     .query(queryText, queryArray)

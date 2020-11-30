@@ -13,6 +13,7 @@ const collabRouter = require('./routes/collabPost.router');
 const profileRouter = require('./routes/profile.router');
 const projectRouter = require('./routes/projects.router');
 const messageRouter = require('./routes/message.router');
+const typeRouter = require('./routes/type.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,6 +32,7 @@ app.use('/api/collab', collabRouter);
 app.use('/api/profile', profileRouter);
 app.use('/api/project', projectRouter);
 app.use('/api/message', messageRouter);
+app.use('/api/type', typeRouter);
 
 // Serve static files
 app.use(express.static('build'));
