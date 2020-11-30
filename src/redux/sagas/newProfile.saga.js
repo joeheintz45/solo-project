@@ -26,9 +26,22 @@ function* postProfile(action) {
   }
 }
 
+function* putProfile(action) {
+  try {
+    yield put({ type: 'ERROR_RESET' });
+    yield axios.post('/api/profile/edit', action.payload);
+    yield put({
+      type: 'GET_PROFILE_INFO',
+    });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 function* newProfileSaga() {
   yield takeLatest('GET_PROFILE_INFO', getProfile);
   yield takeLatest('POST_NEW_PROFILE', postProfile);
+  yield takeLatest('PUT_PROFILE', putProfile);
 }
 
 export default newProfileSaga;

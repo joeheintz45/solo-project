@@ -15,17 +15,43 @@ import {
   Grid,
   Paper,
   Container,
+  CardHeader,
 } from '@material-ui/core';
+import ProfileType from '../ProfileType/ProfileType';
 
 class EditProfile extends Component {
+  state = {
+    type_id: '',
+    bio: '',
+    display_name: '',
+  };
+
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_TYPES' });
+  }
+
+  handleChangeFor = (propertyName) => (event) => {
+    this.setState({
+      [propertyName]: event.target.value,
+    });
+  };
+
+  updateProfile = (event) => {
+    this.props.dispatch({ type: 'PUT_PROFILE', payload: this.state });
+    this.props.edit();
+  };
+
   render() {
     return (
-      <div className="profile-edit">
+      <div>
         <h2>Edit Profile</h2>
         <Grid container spacing={6}>
-          <Grid item xs={12} sm={12} md={6}>
-            <Card style={{ height: '200px', width: '180px' }}>
+          <Grid item xs={6}>
+            <Card
+              style={{ height: '250px', width: '180px', marginLeft: '25px' }}
+            >
               <CardActionArea>
+                <CardHeader subheader="Profile Picture" />
                 <img src={process.env.PUBLIC_URL + '/default.jpg'}></img>
                 {/* <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
@@ -35,23 +61,14 @@ class EditProfile extends Component {
               </CardActionArea>
             </Card>
             <br></br>
-            <div>
-              <TextField
-                id="standard-textarea"
-                variant="outlined"
-                label="Bio"
-                placeholder="Bio (350 characters)"
-                multiline
-                className="size-bio"
-              />
-            </div>
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={12} md={6}>
             <TextField
               id="outlined-basic"
               variant="outlined"
               label="Display Name"
               className="size"
+              onChange={this.handleChangeFor}
             />
             <br />
             <br />
@@ -61,24 +78,43 @@ class EditProfile extends Component {
                   Type
                 </InputLabel>
                 <Select
+                  required
+                  onChange={this.handleChangeFor('type_id')}
                   native
                   label="Type"
-                  value="age"
+                  value={this.state.type_id}
                   inputProps={{
                     name: 'age',
                     id: 'outlined-age-native-simple',
                   }}
                 >
-                  <option aria-label="None" value="" />
-                  <option value="10">Ten</option>
-                  <option value="20">Twenty</option>
-                  <option value="30">Thirty</option>
+                  <option value=""></option>
+                  {this.props.store.type.map((item, index) => (
+                    <ProfileType key={index} item={item} />
+                  ))}
                 </Select>
               </FormControl>
+              <div>
+                <br></br>
+                <TextField
+                  id="standard-textarea"
+                  variant="outlined"
+                  label="Bio"
+                  placeholder="Bio (350 characters)"
+                  multiline
+                  className="size-bio"
+                  onChange={this.handleChangeFor}
+                />
+              </div>
             </div>
             <br />
 
             <br></br>
+            <Grid item xs={12}>
+              <Button color="primary" onClick={this.updateProfile}>
+                Save Changes
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
       </div>

@@ -43,13 +43,14 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
-  const queryText = `INSERT INTO "projects" ("project_desc", "project_link", "profile_id")
-    VALUES ($1, $2, $3);`;
+  const queryText = `INSERT INTO "projects" ("project_desc", "project_link", "header", "profile_id")
+    VALUES ($1, $2, $3, $4);`;
 
   pool
     .query(queryText, [
       req.body.project_desc,
       req.body.project_link,
+      req.body.header,
       req.user.id,
     ])
     .then((dbResponse) => {

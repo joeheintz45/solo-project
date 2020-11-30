@@ -1,0 +1,8 @@
+.profile {
+  margin-left: 300px;
+  margin-right: 300px;
+  text-align: center;
+  border: solid 0.5px lightgray;
+  border-radius: 8px;
+  padding-bottom: 20px;
+}

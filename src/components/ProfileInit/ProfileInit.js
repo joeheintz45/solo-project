@@ -48,7 +48,7 @@ class ProfileInit extends Component {
           <CardContent>
             <div>
               <h2>Edit Profile</h2>
-              <Grid container spacing={6} styling={{ margin: 'auto' }}>
+              <Grid container spacing={6}>
                 <Grid item xs={12} sm={6} md={3}>
                   <Card style={{ height: '200px', width: '180px' }}>
                     <CardActionArea>
@@ -96,7 +96,7 @@ class ProfileInit extends Component {
                         onChange={this.handleChangeFor('type_id')}
                         native
                         label="Type"
-                        value="age"
+                        value={this.state.type_id}
                         inputProps={{
                           name: 'age',
                           id: 'outlined-age-native-simple',

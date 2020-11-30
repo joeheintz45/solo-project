@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import ProfileItem from '../ProfileItem/ProfileItem';
+import Projects from '../Projects/Projects';
 
 class Profile extends Component {
   componentDidMount() {
@@ -25,9 +26,17 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        {this.props.store.profilePrimary.map((item, index) => (
-          <ProfileItem key={index} item={item} />
-        ))}
+        <div>
+          {this.props.store.profilePrimary.map((item, index) => (
+            <ProfileItem key={index} item={item} />
+          ))}
+        </div>
+        <br />
+        <div>
+          {this.props.store.projects.map((item, index) => (
+            <Projects key={index} item={item} />
+          ))}
+        </div>
       </div>
     );
   }

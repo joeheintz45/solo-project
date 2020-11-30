@@ -3,6 +3,7 @@ import postSaga from './collabPost.saga';
 import filteredSaga from './filteredPosts.saga';
 import loginSaga from './login.saga';
 import newProfileSaga from './newProfile.saga';
+import projectSaga from './project.saga';
 import registrationSaga from './registration.saga';
 import typeSaga from './type.saga';
 import userSaga from './user.saga';
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     newProfileSaga(),
     postSaga(),
     filteredSaga(),
+    projectSaga(),
   ]);
 }

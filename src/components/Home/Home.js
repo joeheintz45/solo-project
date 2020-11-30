@@ -60,13 +60,15 @@ class Home extends Component {
       <div>
         <div className="center">
           <FormControl className="size" variant="outlined">
-            <InputLabel htmlFor="outlined-age-native-simple">Type</InputLabel>
+            <InputLabel htmlFor="outlined-age-native-simple">
+              Select Type
+            </InputLabel>
             <Select
               required
               onChange={this.handleChangeFor('type_id')}
               native
-              label="Type"
-              value="age"
+              label="Select Type"
+              value={this.state.type_id}
               inputProps={{
                 name: 'age',
                 id: 'outlined-age-native-simple',

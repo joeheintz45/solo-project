@@ -104,6 +104,7 @@ class App extends Component {
             />
             <ProtectedRoute exact path="/profile" component={Profile} />
             {/* If none of the other routes matched, we will show a 404. */}
+
             <Route render={() => <h1>404</h1>} />
           </Switch>
           <Footer />
