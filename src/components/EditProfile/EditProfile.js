@@ -21,9 +21,9 @@ import ProfileType from '../ProfileType/ProfileType';
 
 class EditProfile extends Component {
   state = {
-    type_id: '',
+    type_id: null,
     bio: '',
-    display_name: '',
+    display_name: null,
   };
 
   componentDidMount() {
@@ -37,7 +37,17 @@ class EditProfile extends Component {
   };
 
   updateProfile = (event) => {
-    this.props.dispatch({ type: 'PUT_PROFILE', payload: this.state });
+    if (this.state.display_name === null) {
+      alert('Please fill out the Display Name!');
+    } else if (this.state.type_id === null) {
+      alert('Please select a musician type!');
+    } else {
+      this.props.dispatch({ type: 'PUT_PROFILE', payload: this.state });
+      this.props.edit();
+    }
+  };
+
+  cancel = (event) => {
     this.props.edit();
   };
 
@@ -64,6 +74,7 @@ class EditProfile extends Component {
           </Grid>
           <Grid item xs={12} sm={12} md={6}>
             <TextField
+              required
               id="outlined-basic"
               variant="outlined"
               label="Display Name"
@@ -102,7 +113,7 @@ class EditProfile extends Component {
                   label="Bio"
                   placeholder="Bio (350 characters)"
                   multiline
-                  className="size-bio"
+                  style={{ width: '80%' }}
                   onChange={this.handleChangeFor('bio')}
                 />
               </div>
@@ -111,6 +122,9 @@ class EditProfile extends Component {
 
             <br></br>
             <Grid item xs={12}>
+              <Button onClick={this.cancel} style={{ marginRight: '25px' }}>
+                Cancel
+              </Button>
               <Button color="primary" onClick={this.updateProfile}>
                 Save Changes
               </Button>

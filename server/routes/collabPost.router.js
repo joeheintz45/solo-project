@@ -17,7 +17,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
     JOIN "profile" ON "profile".user_id = "user".id
     JOIN "musician_types" ON "musician_types".id = "collab_post".type_id
     WHERE "collab_post".type_id = $1
-    ORDER BY "collab_post".published ASC;`;
+    ORDER BY "collab_post".published DESC;`;
 
   pool
     .query(queryText, [req.params.id])
@@ -34,12 +34,12 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `SELECT "collab_post".id, "collab_post".likes, "collab_post".content, "collab_post".published, 
-    "collab_post".location_id, "profile".id, "profile".display_name, "profile".profile_pic, "musician_types".type
+    "collab_post".location_id, "profile".display_name, "profile".profile_pic, "collab_post".user_id, "musician_types".type
     FROM "collab_post"
     JOIN "user" ON "user".id = "collab_post".user_id
     JOIN "profile" ON "profile".user_id = "user".id
     JOIN "musician_types" ON "musician_types".id = "collab_post".type_id
-    ORDER BY "collab_post".published ASC;`;
+    ORDER BY "collab_post".published DESC;`;
 
   pool
     .query(queryText)

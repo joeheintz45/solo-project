@@ -6,6 +6,9 @@ import post from './collabPost.reducer';
 import filter from './filteredPost.reducer';
 import profilePrimary from './profile.reducer';
 import projects from './project.reducer';
+import secondId from './secondaryProfileId.reducer';
+import profileSecondary from './secondaryProfile.reducer';
+import projectsSecondary from './secondaryProject.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -21,6 +24,9 @@ const rootReducer = combineReducers({
   filter,
   profilePrimary,
   projects,
+  secondId,
+  profileSecondary,
+  projectsSecondary,
 });
 
 export default rootReducer;

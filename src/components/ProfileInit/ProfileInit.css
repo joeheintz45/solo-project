@@ -21,5 +21,10 @@
 }
 
 .size-bio {
-  width: 80%;
+  width: 400px;
+}
+
+.center-button {
+  text-align: center;
+  margin-bottom: 20px;
 }

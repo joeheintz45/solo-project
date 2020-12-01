@@ -61,21 +61,10 @@ class ProfileInit extends Component {
                     </CardActionArea>
                   </Card>
                   <br></br>
-                  <div>
-                    <TextField
-                      type="text"
-                      onChange={this.handleChangeFor('bio')}
-                      id="standard-textarea"
-                      variant="outlined"
-                      label="Bio"
-                      placeholder="Bio (350 characters)"
-                      multiline
-                      className="size-bio"
-                    />
-                  </div>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
+                <Grid item xs={12} sm={12} md={6}>
                   <TextField
+                    style={{ width: '52%' }}
                     required
                     type="text"
                     onChange={this.handleChangeFor('display_name')}
@@ -92,6 +81,7 @@ class ProfileInit extends Component {
                         Type
                       </InputLabel>
                       <Select
+                        style={{ width: '150%' }}
                         required
                         onChange={this.handleChangeFor('type_id')}
                         native
@@ -108,6 +98,18 @@ class ProfileInit extends Component {
                         ))}
                       </Select>
                     </FormControl>
+                    <div>
+                      <TextField
+                        type="text"
+                        onChange={this.handleChangeFor('bio')}
+                        id="standard-textarea"
+                        variant="outlined"
+                        label="Bio"
+                        placeholder="Bio (350 characters)"
+                        multiline
+                        style={{ width: '150%', marginTop: '25px' }}
+                      />
+                    </div>
                   </div>
                   <br />
 

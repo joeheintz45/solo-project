@@ -15,6 +15,7 @@ const projectRouter = require('./routes/projects.router');
 const messageRouter = require('./routes/message.router');
 const typeRouter = require('./routes/type.router');
 
+const UploadS3Router = require('react-dropzone-s3-uploader/s3router');
 // Body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -33,6 +34,16 @@ app.use('/api/profile', profileRouter);
 app.use('/api/project', projectRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/type', typeRouter);
+
+app.use(
+  '/s3',
+  UploadS3Router({
+    bucket: 'profile-pic-makemusictogether',
+    region: 'us-east-2',
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    ACL: 'public-read',
+  })
+);
 
 // Serve static files
 app.use(express.static('build'));

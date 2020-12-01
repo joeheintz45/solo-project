@@ -1,4 +1,5 @@
 import React from 'react';
+import ImageUpload from '../ImageUpload/ImageUpload';
 import './Footer.css';
 
 // This is one of our simplest components
@@ -6,6 +7,11 @@ import './Footer.css';
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is, so it doesn't need 'connect()'
 
-const Footer = () => <footer>&copy; Prime Digital Academy</footer>;
+const Footer = () => (
+  <footer>
+    <ImageUpload />
+    &copy; Prime Digital Academy
+  </footer>
+);
 
 export default Footer;

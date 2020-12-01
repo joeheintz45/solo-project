@@ -5,6 +5,8 @@ import loginSaga from './login.saga';
 import newProfileSaga from './newProfile.saga';
 import projectSaga from './project.saga';
 import registrationSaga from './registration.saga';
+import secondaryProfileSaga from './secondaryProfile.saga';
+import secondaryProjectSaga from './secondaryProjects.saga';
 import typeSaga from './type.saga';
 import userSaga from './user.saga';
 
@@ -25,5 +27,7 @@ export default function* rootSaga() {
     postSaga(),
     filteredSaga(),
     projectSaga(),
+    secondaryProfileSaga(),
+    secondaryProjectSaga(),
   ]);
 }

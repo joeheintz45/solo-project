@@ -24,6 +24,7 @@ import './App.css';
 import ProfileInit from '../ProfileInit/ProfileInit';
 import Home from '../Home/Home';
 import Profile from '../Profile/Profile';
+import ProfileSecondary from '../ProfileSecondary/ProfileSecondary';
 
 class App extends Component {
   componentDidMount() {
@@ -103,6 +104,12 @@ class App extends Component {
               component={ProfileInit}
             />
             <ProtectedRoute exact path="/profile" component={Profile} />
+            <ProtectedRoute
+              exact
+              path="/profile-secondary/:id"
+              component={ProfileSecondary}
+            />
+
             {/* If none of the other routes matched, we will show a 404. */}
 
             <Route render={() => <h1>404</h1>} />

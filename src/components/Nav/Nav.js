@@ -46,9 +46,6 @@ const Nav = (props) => {
             src="/broken-image.jpg"
           /> */}
         </Link>
-        <Link className="nav-link" to="/new-post">
-          New Post
-        </Link>
         <LogOutButton className="nav-link" />
       </div>
     </div>
