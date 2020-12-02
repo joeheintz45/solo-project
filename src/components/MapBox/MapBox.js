@@ -8,6 +8,7 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class MapBox extends Component {
   state = {
+    hasLoaded: false,
     viewport: {
       latitude: this.props.store.map.lat,
       longitude: this.props.store.map.lng,
@@ -21,6 +22,12 @@ class MapBox extends Component {
     this.findNearMe();
     this.props.dispatch({ type: 'GET_CIRCLE' });
   }
+
+  setFalse = (event) => {
+    this.setState({
+      hasLoaded: false,
+    });
+  };
 
   findNearMe = () => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -48,6 +55,8 @@ class MapBox extends Component {
   };
 
   render() {
+    if (this.state.hasLoaded === false) {
+    }
     return (
       <div>
         <ReactMapGL
