@@ -17,6 +17,7 @@ import {
   Typography,
   Grid,
 } from '@material-ui/core';
+import MapBox from '../MapBox/MapBox';
 
 class Home extends Component {
   state = {
@@ -24,6 +25,8 @@ class Home extends Component {
     filtered: false,
     newPost: false,
     content: '',
+    latitude: '',
+    longitude: '',
   };
 
   componentDidMount() {
@@ -38,6 +41,11 @@ class Home extends Component {
   };
 
   getFilteredPosts = (event) => {
+    console.log(
+      'HOME LAT AND LNG: ',
+      this.state.latitude,
+      this.state.longitude
+    );
     this.setState({
       filtered: true,
     });
@@ -52,7 +60,6 @@ class Home extends Component {
   };
 
   newPosts = (event) => {
-    console.log(this.state.newPost);
     if (this.state.newPost === false) {
       this.setState({
         newPost: true,
@@ -69,7 +76,10 @@ class Home extends Component {
     this.setState({
       newPost: false,
     });
-    this.props.dispatch({ type: 'NEW_COLLAB_POST', payload: this.state });
+    this.props.dispatch({
+      type: 'NEW_COLLAB_POST',
+      payload: { collab: this.state, location: this.props.store.map },
+    });
   };
 
   render() {
@@ -132,7 +142,7 @@ class Home extends Component {
                 id="standard-textarea"
                 variant="outlined"
                 label="Content"
-                placeholder="Bio (350 characters)"
+                placeholder="Content"
                 multiline
                 style={{
                   width: '90%',
@@ -209,6 +219,7 @@ class Home extends Component {
     return (
       <div>
         <div className="center">
+          <MapBox></MapBox>
           {mapOrPost}
           <br />
           <div>{postBtn}</div>

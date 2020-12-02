@@ -1,6 +1,8 @@
 import { all } from 'redux-saga/effects';
+import circleSaga from './circle.saga';
 import postSaga from './collabPost.saga';
 import filteredSaga from './filteredPosts.saga';
+import imageSaga from './imageUpload.saga';
 import loginSaga from './login.saga';
 import newProfileSaga from './newProfile.saga';
 import projectSaga from './project.saga';
@@ -29,5 +31,7 @@ export default function* rootSaga() {
     projectSaga(),
     secondaryProfileSaga(),
     secondaryProjectSaga(),
+    imageSaga(),
+    circleSaga(),
   ]);
 }

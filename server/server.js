@@ -14,6 +14,7 @@ const profileRouter = require('./routes/profile.router');
 const projectRouter = require('./routes/projects.router');
 const messageRouter = require('./routes/message.router');
 const typeRouter = require('./routes/type.router');
+const mapRouter = require('./routes/map.router');
 
 const UploadS3Router = require('react-dropzone-s3-uploader/s3router');
 // Body parser middleware
@@ -34,6 +35,7 @@ app.use('/api/profile', profileRouter);
 app.use('/api/project', projectRouter);
 app.use('/api/message', messageRouter);
 app.use('/api/type', typeRouter);
+app.use('/api/map', mapRouter);
 
 app.use(
   '/s3',

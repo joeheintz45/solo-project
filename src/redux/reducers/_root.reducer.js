@@ -9,6 +9,8 @@ import projects from './project.reducer';
 import secondId from './secondaryProfileId.reducer';
 import profileSecondary from './secondaryProfile.reducer';
 import projectsSecondary from './secondaryProject.reducer';
+import map from './map.reducer';
+import circle from './circle.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +29,8 @@ const rootReducer = combineReducers({
   secondId,
   profileSecondary,
   projectsSecondary,
+  map,
+  circle,
 });
 
 export default rootReducer;

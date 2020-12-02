@@ -21,6 +21,16 @@ class Projects extends Component {
   };
 
   render() {
+    let deleteBtn = (
+      <Button color="secondary" onClick={this.deleteProject}>
+        Delete
+      </Button>
+    );
+
+    if (this.props.store.user.id !== this.props.item.profile_id) {
+      deleteBtn = <></>;
+    }
+
     return (
       <div>
         <Card variant="outlined" style={{ width: '900px', margin: 'auto' }}>
@@ -38,9 +48,8 @@ class Projects extends Component {
                 {this.props.item.project_link}
               </a>
             </Typography>
-            <Button color="secondary" onClick={this.deleteProject}>
-              Delete
-            </Button>
+            {deleteBtn}
+            <div></div>
           </CardContent>
         </Card>
         <br />

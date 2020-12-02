@@ -9,7 +9,7 @@ import './Footer.css';
 
 const Footer = () => (
   <footer>
-    <ImageUpload />
+    {/* <ImageUpload /> */}
     &copy; Prime Digital Academy
   </footer>
 );

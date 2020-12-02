@@ -58,16 +58,34 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
+  console.log('POST req.body: ', req.body);
   console.log('req.user:', req.user);
-  const queryText = `INSERT INTO "collab_post" ("content", "user_id", "likes", "type_id")
-  VALUES ($1, $2, 0, $3);`;
-  const queryArray = [req.body.content, req.user.id, req.body.type_id];
+  const queryText = `INSERT INTO "map" ("latitude", "longitude")
+        VALUES ($1, $2)
+        RETURNING "id";`;
 
   pool
-    .query(queryText, queryArray)
+    .query(queryText, [req.body.location.latitude, req.body.location.longitude])
     .then((dbResponse) => {
       console.log(dbResponse);
-      res.sendStatus(200);
+      const queryText2 = `INSERT INTO "collab_post" ("content", "user_id", "likes", "type_id", "location_id")
+        VALUES ($1, $2, 0, $3, $4);`;
+      const queryArray = [
+        req.body.collab.content,
+        req.user.id,
+        req.body.collab.type_id,
+        dbResponse.rows[0].id,
+      ];
+
+      pool
+        .query(queryText2, queryArray)
+        .then((dbResponse) => {
+          res.sendStatus(200);
+        })
+        .catch((err) => {
+          console.log(err);
+          res.sendStatus(500);
+        });
     })
     .catch((err) => {
       console.log(err);
