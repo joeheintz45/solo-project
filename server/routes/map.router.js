@@ -15,12 +15,15 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-  let center = [-94.578331, 39.099724];
+  // POST route code here
+  let longitude = Number(req.body.longitude);
+  let latitude = req.body.latitude;
+  let center = [longitude, latitude];
   let radius = 5;
   let options = { steps: 100, units: 'miles', properties: { foo: 'bar' } };
   circle = turf.circle(center, radius, options);
-  console.log(circle.geometry);
-  // POST route code here
+
+  console.log(circle.geometry.coordinates[0]);
   res.send(circle);
 });
 

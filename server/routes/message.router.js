@@ -75,12 +75,12 @@ router.post('/:id', rejectUnauthenticated, (req, res) => {
 });
 
 router.delete('/delete/:id', rejectUnauthenticated, (req, res) => {
-  const queryText = `DELETE FROM "user_messages" WHERE "message_id"=$1 AND "primary_user"=$2;`;
+  const queryText = `DELETE FROM "user_messages" WHERE "id"=$1 AND "primary_user"=$2;`;
 
   pool
     .query(queryText, [req.params.id, req.user.id])
     .then((dbResponse) => {
-      res.send(200);
+      res.sendStatus(200);
     })
     .catch((err) => {
       console.log(err);

@@ -37,8 +37,16 @@ class CollabPost extends Component {
     });
   };
 
+  messageUser = (event) => {
+    this.props.history.push(`/message/${this.props.item.user_id}`);
+  };
+
   render() {
-    let mesgOrDeleteBtn = <Button color="primary">Message</Button>;
+    let mesgOrDeleteBtn = (
+      <Button color="primary" onClick={this.messageUser}>
+        Message
+      </Button>
+    );
 
     if (this.props.item.user_id === this.props.store.user.id) {
       mesgOrDeleteBtn = (

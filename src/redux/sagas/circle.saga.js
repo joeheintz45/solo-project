@@ -18,6 +18,7 @@ function* postCircle(action) {
   try {
     yield put({ type: 'ERROR_RESET' });
     const response = yield axios.post('/api/map', action.payload);
+    console.log(response.data);
     yield put({
       type: 'SET_CIRCLE',
       payload: response.data,
@@ -28,7 +29,7 @@ function* postCircle(action) {
 }
 
 function* circleSaga() {
-  //yield takeLatest('GET_CIRCLE', getCircle);
+  // yield takeLatest('GET_CIRCLE', getCircle);
   yield takeLatest('POST_CIRCLE', postCircle);
 }
 

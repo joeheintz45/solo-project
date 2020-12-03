@@ -8,7 +8,6 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 class MapBox extends Component {
   state = {
-    hasLoaded: false,
     viewport: {
       latitude: this.props.store.map.lat,
       longitude: this.props.store.map.lng,
@@ -20,17 +19,16 @@ class MapBox extends Component {
 
   componentDidMount() {
     this.findNearMe();
-    this.props.dispatch({ type: 'GET_CIRCLE' });
+    console.log('hello');
   }
-
-  setFalse = (event) => {
-    this.setState({
-      hasLoaded: false,
-    });
-  };
 
   findNearMe = () => {
     navigator.geolocation.getCurrentPosition((position) => {
+      console.log(
+        'Lat and Long',
+        position.coords.latitude,
+        position.coords.longitude
+      );
       this.setState(
         {
           viewport: {
@@ -45,18 +43,12 @@ class MapBox extends Component {
             type: 'SET_CORD',
             payload: this.state.viewport,
           });
-          this.props.dispatch({
-            type: 'POST_CIRCLE',
-            payload: this.state.viewport,
-          });
         }
       );
     });
   };
 
   render() {
-    if (this.state.hasLoaded === false) {
-    }
     return (
       <div>
         <ReactMapGL
@@ -69,7 +61,7 @@ class MapBox extends Component {
           style={{ margin: 'auto' }}
           onClick={this.findNearMe}
         >
-          <Source
+          {/* <Source
             id="userjson"
             type="geojson"
             data={this.props.store.circle.geometry}
@@ -82,7 +74,7 @@ class MapBox extends Component {
               'fill-color': '#833ab4',
               'fill-opacity': 0.4,
             }}
-          />
+          /> */}
         </ReactMapGL>
       </div>
     );

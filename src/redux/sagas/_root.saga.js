@@ -4,6 +4,7 @@ import postSaga from './collabPost.saga';
 import filteredSaga from './filteredPosts.saga';
 import imageSaga from './imageUpload.saga';
 import loginSaga from './login.saga';
+import messageSaga from './message.saga';
 import newProfileSaga from './newProfile.saga';
 import projectSaga from './project.saga';
 import registrationSaga from './registration.saga';
@@ -33,5 +34,6 @@ export default function* rootSaga() {
     secondaryProjectSaga(),
     imageSaga(),
     circleSaga(),
+    messageSaga(),
   ]);
 }
