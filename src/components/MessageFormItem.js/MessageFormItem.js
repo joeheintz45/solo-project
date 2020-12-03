@@ -21,10 +21,10 @@ import MessageProfilePrimary from '../MessageProfilePrimary/MessageProfilePrimar
 
 class MessageFormItem extends Component {
   deleteMessage = (event) => {
-    console.log(this.props.item.id);
+    console.log('DELETE MESSAGE LOG', this.props.item);
     this.props.dispatch({
       type: 'DELETE_MESSAGE',
-      payload: this.props.item.id,
+      payload: this.props.item,
     });
   };
 

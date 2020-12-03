@@ -12,7 +12,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `SELECT * FROM "messages"
     JOIN "user_messages" ON "user_messages".message_id = "messages".id
-    WHERE "user_messages".primary_user = $1 OR "user_messages".secondary_user = $2;`;
+    WHERE "user_messages".primary_user = $1 OR "user_messages".secondary_user = $2
+    LIMIT 1;`;
 
   pool
     .query(queryText, [req.user.id, req.user.id])

@@ -5,6 +5,7 @@ import filteredSaga from './filteredPosts.saga';
 import imageSaga from './imageUpload.saga';
 import loginSaga from './login.saga';
 import messageSaga from './message.saga';
+import messageListSaga from './messageList.saga';
 import newProfileSaga from './newProfile.saga';
 import projectSaga from './project.saga';
 import registrationSaga from './registration.saga';
@@ -35,5 +36,6 @@ export default function* rootSaga() {
     imageSaga(),
     circleSaga(),
     messageSaga(),
+    messageListSaga(),
   ]);
 }

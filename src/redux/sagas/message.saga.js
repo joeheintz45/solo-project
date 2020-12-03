@@ -24,6 +24,7 @@ function* postMessage(action) {
     );
     yield put({
       type: 'GET_MESSAGES',
+      payload: action.payload.id,
     });
   } catch (err) {
     console.log(err);
@@ -33,9 +34,10 @@ function* postMessage(action) {
 function* deleteMessage(action) {
   try {
     yield put({ type: 'ERROR_RESET' });
-    yield axios.delete(`/api/message/delete/${action.payload}`);
+    yield axios.delete(`/api/message/delete/${action.payload.id}`);
     yield put({
       type: 'GET_MESSAGES',
+      payload: action.payload.secondary_user,
     });
   } catch (err) {
     console.log(err);

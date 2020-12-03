@@ -26,6 +26,7 @@ import Home from '../Home/Home';
 import Profile from '../Profile/Profile';
 import ProfileSecondary from '../ProfileSecondary/ProfileSecondary';
 import MessageForm from '../MessageForm/MessageForm';
+import MessageList from '../MessageList/MessageList';
 
 class App extends Component {
   componentDidMount() {
@@ -110,6 +111,7 @@ class App extends Component {
               path="/profile-secondary/:id"
               component={ProfileSecondary}
             />
+            <ProtectedRoute exact path="/message" component={MessageList} />
             <ProtectedRoute exact path="/message/:id" component={MessageForm} />
             {/* If none of the other routes matched, we will show a 404. */}
 
