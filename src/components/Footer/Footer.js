@@ -10,7 +10,7 @@ import './Footer.css';
 const Footer = () => (
   <footer>
     {/* <ImageUpload /> */}
-    &copy; Prime Digital Academy
+    &copy; Make Music Together
   </footer>
 );
 

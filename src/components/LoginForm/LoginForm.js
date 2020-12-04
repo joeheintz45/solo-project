@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import mapStoreToProps from '../../redux/mapStoreToProps';
+import { Button, TextField } from '@material-ui/core';
 
 class LoginForm extends Component {
   state = {
@@ -42,31 +43,42 @@ class LoginForm extends Component {
           </h3>
         )}
         <div>
-          <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              required
-              value={this.state.username}
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
+          <TextField
+            label="Username"
+            placeholder="Username"
+            type="text"
+            name="username"
+            variant="outlined"
+            required
+            value={this.state.username}
+            onChange={this.handleInputChangeFor('username')}
+          />
         </div>
+        <br></br>
         <div>
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              name="password"
-              required
-              value={this.state.password}
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
+          <TextField
+            label="Password"
+            placeholder="Password"
+            type="password"
+            name="password"
+            variant="outlined"
+            required
+            value={this.state.password}
+            onChange={this.handleInputChangeFor('password')}
+          />
         </div>
+        <br></br>
         <div>
-          <input className="btn" type="submit" name="submit" value="Log In" />
+          <Button
+            className="btn"
+            type="submit"
+            name="submit"
+            value="Log In"
+            variant="contained"
+            color="primary"
+          >
+            Login
+          </Button>
         </div>
       </form>
     );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import { withRouter } from 'react-router-dom';
+import { TextField, Button } from '@material-ui/core';
 
 class RegisterForm extends Component {
   state = {
@@ -39,31 +40,42 @@ class RegisterForm extends Component {
           </h3>
         )}
         <div>
-          <label htmlFor="username">
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={this.state.username}
-              required
-              onChange={this.handleInputChangeFor('username')}
-            />
-          </label>
+          <TextField
+            label="Username"
+            placeholder="Username"
+            variant="outlined"
+            type="text"
+            name="username"
+            value={this.state.username}
+            required
+            onChange={this.handleInputChangeFor('username')}
+          />
         </div>
+        <br></br>
         <div>
-          <label htmlFor="password">
-            Password:
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              required
-              onChange={this.handleInputChangeFor('password')}
-            />
-          </label>
+          <TextField
+            label="Password"
+            placeholder="Password"
+            variant="outlined"
+            type="password"
+            name="password"
+            value={this.state.password}
+            required
+            onChange={this.handleInputChangeFor('password')}
+          />
         </div>
+        <br></br>
         <div>
-          <input className="btn" type="submit" name="submit" value="Register" />
+          <Button
+            className="btn"
+            type="submit"
+            name="submit"
+            variant="contained"
+            color="primary"
+            value="Register"
+          >
+            Register
+          </Button>
         </div>
       </form>
     );

@@ -16,10 +16,10 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
-  let longitude = Number(req.body.longitude);
-  let latitude = req.body.latitude;
+  let longitude = -94.578331;
+  let latitude = 39.099724;
   let center = [longitude, latitude];
-  let radius = 5;
+  let radius = req.body.radius;
   let options = { steps: 100, units: 'miles', properties: { foo: 'bar' } };
   circle = turf.circle(center, radius, options);
 

@@ -83,7 +83,7 @@ class Home extends Component {
   };
 
   render() {
-    let mapOrPost = <div></div>;
+    let mapOrPost = <MapBox></MapBox>;
     let postBtn = (
       <Button variant="contained" color="primary" onClick={this.newPosts}>
         New Post
@@ -112,9 +112,14 @@ class Home extends Component {
             ))}
           </Select>
         </FormControl>
-        <br />
+
         <div className="spacer">
-          <Button variant="contained" color="secondary" onClick={this.getPosts}>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={this.getPosts}
+            style={{ marginRight: '10px' }}
+          >
             Reset
           </Button>
 
@@ -219,7 +224,6 @@ class Home extends Component {
     return (
       <div>
         <div className="center">
-          <MapBox></MapBox>
           {mapOrPost}
           <br />
           <div>{postBtn}</div>

@@ -69,6 +69,7 @@ class MessageForm extends Component {
           variant="outlined"
           style={{ width: '1000px', margin: 'auto', marginTop: '20px' }}
         >
+          <h4 style={{ marginLeft: '25px' }}>Send a Message</h4>
           <Grid container spacing={6}>
             <Grid item xs={12} sm={12} md={12}>
               <TextField
