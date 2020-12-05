@@ -61,7 +61,10 @@ class CollabPost extends Component {
         <Card variant="outlined" style={{ width: '1000px', margin: 'auto' }}>
           <CardHeader
             avatar={
-              <Avatar src="/broken-image.jpg" onClick={this.handleClick} />
+              <Avatar
+                src={this.props.item.profile_pic}
+                onClick={this.handleClick}
+              />
             }
             title={this.props.item.display_name}
             subheader={this.props.item.type}

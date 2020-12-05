@@ -18,8 +18,14 @@ import {
 } from '@material-ui/core';
 import MessageProfileInfo from '../MessageProfileInfo/MessageProfileInfo';
 import MessageProfilePrimary from '../MessageProfilePrimary/MessageProfilePrimary';
+import MessageProfilePic from '../MessageProfilePic/MessageProfilePic';
 
 class MessageFormItem extends Component {
+  componentDidMount() {
+    this.props.dispatch({ type: 'GET_PROFILE_SECONDARY' });
+    this.props.dispatch({ type: 'GET_PROFILE_INFO' });
+  }
+
   deleteMessage = (event) => {
     console.log('DELETE MESSAGE LOG', this.props.item);
     this.props.dispatch({
@@ -42,7 +48,9 @@ class MessageFormItem extends Component {
             }}
           >
             <CardHeader
-              avatar={<Avatar src="/broken-image.jpg" />}
+              avatar={this.props.store.profileSecondary.map((item, index) => (
+                <MessageProfilePic key={index} item={item} />
+              ))}
               title={this.props.store.profileSecondary.map((item, index) => (
                 <MessageProfileInfo key={index} item={item} />
               ))}
@@ -70,9 +78,9 @@ class MessageFormItem extends Component {
           }}
         >
           <CardHeader
-            avatar={
-              <Avatar src="/broken-image.jpg" onClick={this.handleClick} />
-            }
+            avatar={this.props.store.profilePrimary.map((item, index) => (
+              <MessageProfilePic key={index} item={item} />
+            ))}
             title={this.props.store.profilePrimary.map((item, index) => (
               <MessageProfilePrimary key={index} item={item} />
             ))}

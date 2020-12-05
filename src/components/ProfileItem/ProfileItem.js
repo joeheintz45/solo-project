@@ -46,7 +46,7 @@ class ProfileItem extends Component {
             >
               <CardHeader subheader="Profile Picture" />
               <CardActionArea>
-                <img src={process.env.PUBLIC_URL + '/default.jpg'}></img>
+                <img src={this.props.item.profile_pic}></img>
               </CardActionArea>
             </Card>
           </Grid>

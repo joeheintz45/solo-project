@@ -1,6 +1,7 @@
 const initialState = {
   lat: 0,
   lng: 0,
+  radius: 5,
   updateNeeded: false,
 };
 

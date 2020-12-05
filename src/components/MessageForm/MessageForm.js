@@ -50,7 +50,7 @@ class MessageForm extends Component {
         payload: { message: this.state, id: this.props.match.params.id },
       });
       this.setState({
-        message: '',
+        message: null,
       });
       this.props.dispatch({
         type: 'GET_MESSAGES',

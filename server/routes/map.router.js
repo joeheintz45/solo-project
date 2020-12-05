@@ -23,8 +23,14 @@ router.post('/', (req, res) => {
   let options = { steps: 100, units: 'miles', properties: { foo: 'bar' } };
   circle = turf.circle(center, radius, options);
 
-  console.log(circle.geometry.coordinates[0]);
-  res.send(circle);
+  let points = turf.points([[longitude, latitude]]);
+  let searchWithin = turf.polygon([circle.geometry.coordinates[0]]);
+
+  let ptsWithin = turf.pointsWithinPolygon(points, searchWithin);
+
+  console.log(ptsWithin.features[0].geometry);
+  console.log(circle);
+  res.send({ circle: circle, points: ptsWithin });
 });
 
 module.exports = router;

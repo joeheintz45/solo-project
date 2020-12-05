@@ -28,6 +28,7 @@ class EditProfile extends Component {
 
   componentDidMount() {
     this.props.dispatch({ type: 'GET_TYPES' });
+    this.props.dispatch({ type: 'GET_PROFILE_INFO' });
   }
 
   handleChangeFor = (propertyName) => (event) => {
@@ -62,7 +63,7 @@ class EditProfile extends Component {
             >
               <CardActionArea>
                 <CardHeader subheader="Profile Picture" />
-                <img src={process.env.PUBLIC_URL + '/default.jpg'}></img>
+                <img src={this.props.store.profilePrimary[0].profile_pic}></img>
                 {/* <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
                     Add an Image

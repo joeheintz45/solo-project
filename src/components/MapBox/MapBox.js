@@ -28,39 +28,6 @@ class MapBox extends Component {
     });
   }
 
-  changeRadiusOne = (event) => {
-    this.setState({
-      radius: 5,
-    });
-    console.log(this.state.radius);
-    this.props.dispatch({
-      type: 'POST_CIRCLE',
-      payload: this.state,
-    });
-  };
-
-  changeRadiusTwo = (event) => {
-    this.setState({
-      radius: 10,
-    });
-    console.log(this.state.radius);
-    this.props.dispatch({
-      type: 'POST_CIRCLE',
-      payload: this.state,
-    });
-  };
-
-  changeRadiusThree = (event) => {
-    this.setState({
-      radius: 15,
-    });
-    console.log(this.state.radius);
-    this.props.dispatch({
-      type: 'POST_CIRCLE',
-      payload: this.state,
-    });
-  };
-
   findNearMe = () => {
     console.log(navigator);
     // console.log(navigator.geolocation.getCurrentPosition());
@@ -112,36 +79,10 @@ class MapBox extends Component {
   };
 
   render() {
+    console.log(this.props.store.circle.points);
     if (this.props.store.circle != {}) {
       return (
         <div>
-          <h4>Radius Selector:</h4>
-          <Button
-            style={{ margin: '5px' }}
-            color="default"
-            variant="contained"
-            value="5"
-            onClick={this.changeRadiusOne}
-          >
-            5 mi.
-          </Button>
-          <Button
-            style={{ margin: '5px' }}
-            color="default"
-            variant="contained"
-            value="10"
-            onClick={this.changeRadiusTwo}
-          >
-            10 mi.
-          </Button>
-          <Button
-            style={{ margin: '5px' }}
-            color="default"
-            variant="contained"
-            onClick={this.changeRadiusThree}
-          >
-            15 mi.
-          </Button>
           <ReactMapGL
             {...this.state.viewport}
             width="70vw"
@@ -155,7 +96,7 @@ class MapBox extends Component {
             <Source
               id="userjson"
               type="geojson"
-              data={this.props.store.circle.geometry}
+              data={this.props.store.circle.circle}
             />
             <Layer
               id="marker"

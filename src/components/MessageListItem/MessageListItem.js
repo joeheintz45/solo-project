@@ -18,6 +18,7 @@ import {
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import MessageProfileInfo from '../MessageProfileInfo/MessageProfileInfo';
 import { withRouter } from 'react-router-dom';
+import MessageProfilePic from '../MessageProfilePic/MessageProfilePic';
 
 class MessageListItem extends Component {
   componentDidMount() {
@@ -50,7 +51,9 @@ class MessageListItem extends Component {
               }}
             >
               <CardHeader
-                avatar={<Avatar src="/broken-image.jpg" />}
+                avatar={this.props.store.profileSecondary.map((item, index) => (
+                  <MessageProfilePic key={index} item={item} />
+                ))}
                 title={this.props.store.profileSecondary.map((item, index) => (
                   <MessageProfileInfo key={index} item={item} />
                 ))}

@@ -82,6 +82,39 @@ class Home extends Component {
     });
   };
 
+  changeRadiusOne = (event) => {
+    this.setState({
+      radius: 5,
+    });
+    console.log(this.state.radius);
+    this.props.dispatch({
+      type: 'POST_CIRCLE',
+      payload: this.state,
+    });
+  };
+
+  changeRadiusTwo = (event) => {
+    this.setState({
+      radius: 10,
+    });
+    console.log(this.state.radius);
+    this.props.dispatch({
+      type: 'POST_CIRCLE',
+      payload: this.state,
+    });
+  };
+
+  changeRadiusThree = (event) => {
+    this.setState({
+      radius: 15,
+    });
+    console.log(this.state.radius);
+    this.props.dispatch({
+      type: 'POST_CIRCLE',
+      payload: this.state,
+    });
+  };
+
   render() {
     let mapOrPost = <MapBox></MapBox>;
     let postBtn = (
@@ -206,7 +239,11 @@ class Home extends Component {
     let postList = (
       <div>
         {this.props.store.post.map((item, index) => (
-          <CollabPost index={index} item={item} />
+          <CollabPost
+            index={index}
+            item={item}
+            points={this.props.store.circle.points}
+          />
         ))}
       </div>
     );
@@ -215,15 +252,47 @@ class Home extends Component {
       postList = (
         <div>
           {this.props.store.filter.map((item, index) => (
-            <CollabPost index={index} item={item} />
+            <CollabPost
+              index={index}
+              item={item}
+              points={this.props.store.circle.points}
+            />
           ))}
         </div>
       );
     }
-
+    console.log(this.props.store.circle.points);
+    // if (this.props.)
     return (
       <div>
         <div className="center">
+          <h4>Radius Selector:</h4>
+          <Button
+            style={{ margin: '5px', textAlign: 'center' }}
+            color="default"
+            variant="contained"
+            value="5"
+            onClick={this.changeRadiusOne}
+          >
+            5 mi.
+          </Button>
+          <Button
+            style={{ margin: '5px', textAlign: 'center' }}
+            color="default"
+            variant="contained"
+            value="10"
+            onClick={this.changeRadiusTwo}
+          >
+            10 mi.
+          </Button>
+          <Button
+            style={{ margin: '5px', textAlign: 'center' }}
+            color="default"
+            variant="contained"
+            onClick={this.changeRadiusThree}
+          >
+            15 mi.
+          </Button>
           {mapOrPost}
           <br />
           <div>{postBtn}</div>

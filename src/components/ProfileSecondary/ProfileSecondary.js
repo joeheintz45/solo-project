@@ -16,6 +16,7 @@ import {
 import mapStoreToProps from '../../redux/mapStoreToProps';
 import Projects from '../Projects/Projects';
 import ProfileItemSecondary from '../ProfileItemSecondary/ProfileItemSecondary';
+import ProjectsSecondary from '../ProjectsSecondary/ProjectsSecondary';
 
 class Profile extends Component {
   componentDidMount() {
@@ -41,7 +42,7 @@ class Profile extends Component {
         <div className="center-button"></div>
         <div>
           {this.props.store.projectsSecondary.map((item, index) => (
-            <Projects key={index} item={item} />
+            <ProjectsSecondary key={index} item={item} />
           ))}
         </div>
       </div>

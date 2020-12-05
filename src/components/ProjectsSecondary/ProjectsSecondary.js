@@ -12,9 +12,9 @@ import {
   Button,
 } from '@material-ui/core';
 
-class Projects extends Component {
+class ProjectsSecondary extends Component {
   componentDidMount() {
-    this.props.dispatch({ type: 'GET_PROFILE_INFO' });
+    this.props.dispatch({ type: 'GET_PROFILE_SECONDARY' });
   }
 
   deleteProject = (event) => {
@@ -41,7 +41,7 @@ class Projects extends Component {
           <CardHeader
             avatar={
               <Avatar
-                src={this.props.store.profilePrimary[0].profile_pic}
+                src={this.props.store.profileSecondary[0].profile_pic}
                 onClick={this.handleClick}
               />
             }
@@ -65,4 +65,4 @@ class Projects extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(Projects);
+export default connect(mapStoreToProps)(ProjectsSecondary);
