@@ -81,17 +81,12 @@ router.post('/', rejectUnauthenticated, (req, res) => {
 });
 
 router.put('/edit', (req, res) => {
-  const queryText = `UPDATE "profile" SET "bio"=$1, "display_name"=$2, "profile_pic"=$3
-    WHERE "user_id"=$4
+  const queryText = `UPDATE "profile" SET "bio"=$1, "display_name"=$2
+    WHERE "user_id"=$3
     RETURNING "id";`;
 
   pool
-    .query(queryText, [
-      req.body.bio,
-      req.body.display_name,
-      req.body.profile_pic,
-      req.user.id,
-    ])
+    .query(queryText, [req.body.bio, req.body.display_name, req.user.id])
     .then((dbResponse) => {
       const queryText2 = `UPDATE "profile_types" SET "type_id"=$1 WHERE "profile_id"=$2;`;
 

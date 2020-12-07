@@ -80,7 +80,7 @@ class Profile extends Component {
                 id="standard-textarea"
                 variant="outlined"
                 label="Header"
-                placeholder="Bio (350 characters)"
+                placeholder="Header"
                 multiline
                 style={{
                   width: '90%',
@@ -96,7 +96,7 @@ class Profile extends Component {
                   id="standard-textarea"
                   variant="outlined"
                   label="Description"
-                  placeholder="Bio (350 characters)"
+                  placeholder="Description"
                   multiline
                   style={{
                     width: '90%',
@@ -113,7 +113,7 @@ class Profile extends Component {
                   id="standard-textarea"
                   variant="outlined"
                   label="Link"
-                  placeholder="Bio (350 characters)"
+                  placeholder="Project Link"
                   multiline
                   style={{
                     width: '90%',
