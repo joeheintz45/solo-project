@@ -13,7 +13,8 @@ CREATE TABLE "projects" (
 	"id" serial primary key,
 	"project_desc" varchar(400),
 	"project_link" varchar(200) NOT NULL,
-	"profile_id" int references "user"
+	"profile_id" int references "user",
+	"header" varchar(100)
 );
 
 CREATE TABLE "profile" (
@@ -28,13 +29,17 @@ CREATE TABLE "collab_post" (
 	"id" serial primary key,
 	"user_id" int references "user",
 	"likes" int,
-	"published" date,
-	"location_id" int references "map"
+	"content" varchar(500),
+	"published"  DATE NOT NULL
+                DEFAULT CURRENT_TIMESTAMP,
+	"location_id" int references "map",
+	"type_id" int references "musician_types"
 );
 
 CREATE TABLE "map" (
 	"id" serial primary key,
-	"location" varchar (60)
+	"latitude" varchar (200),
+	"longitude" varchar (200)
 );
 
 CREATE TABLE "messages" (
@@ -51,7 +56,7 @@ CREATE TABLE "user_messages" (
 
 CREATE TABLE "musician_types" (
 	"id" serial primary key,
-	"type" varchar(40)
+	"type" varchar(80)
 );
 
 CREATE TABLE "profile_types" (
