@@ -11,6 +11,7 @@ import {
   Grid,
   Button,
 } from '@material-ui/core';
+import MessageProfilePic from '../MessageProfilePic/MessageProfilePic';
 
 class ProjectsSecondary extends Component {
   componentDidMount() {
@@ -39,12 +40,10 @@ class ProjectsSecondary extends Component {
       <div>
         <Card variant="outlined" style={{ width: '900px', margin: 'auto' }}>
           <CardHeader
-            avatar={
-              <Avatar
-                src={this.props.store.profileSecondary[0].profile_pic}
-                onClick={this.handleClick}
-              />
-            }
+            avatar={this.props.store.profileSecondary.map((item, index) => (
+              <MessageProfilePic item={item} index={index} />
+            ))}
+            onClick={this.handleClick}
             title={this.props.item.header}
           />
           <CardContent>
