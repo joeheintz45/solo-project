@@ -15,9 +15,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     JOIN "musician_types" ON "musician_types".id = "profile_types".type_id
     WHERE "user_id" = $1`;
 
+  console.log('****Requested User: ', req.user.id);
   pool
     .query(queryText, [req.user.id])
     .then((dbResponse) => {
+      console.log('*****DB RESPONES: ', dbResponse.rows);
       res.send(dbResponse.rows);
     })
     .catch((err) => {
