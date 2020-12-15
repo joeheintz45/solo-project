@@ -46,4 +46,8 @@ pool.on('error', (err) => {
   process.exit(-1);
 });
 
+pool.on('connect', (client) => {
+  console.log('connected to DB: ', client);
+});
+
 module.exports = pool;
